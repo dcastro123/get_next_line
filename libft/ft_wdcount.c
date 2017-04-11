@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_wdcount.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 22:35:16 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/02/16 23:21:22 by dcastro-         ###   ########.fr       */
+/*   Created: 2017/01/20 21:06:41 by dcastro-          #+#    #+#             */
+/*   Updated: 2017/01/25 13:36:02 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "libft/libft.h"
+size_t	ft_wdcount(char const *s, char c)
+{
+	size_t	num_words;
+	int		i;
 
-# define BUFF_SIZE 32
-
-int		get_next_line(int fd, char **line);
-#endif
+	i = 0;
+	num_words = 0;
+	while (s[i])
+	{
+		while (s[i] == c)
+			i++;
+		if (s[i] && s[i] != c)
+			num_words++;
+		while (s[i] && s[i] != c)
+			i++;
+	}
+	return (num_words);
+}

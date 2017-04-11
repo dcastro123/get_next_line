@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 22:35:16 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/02/16 23:21:22 by dcastro-         ###   ########.fr       */
+/*   Created: 2017/01/25 15:47:05 by dcastro-          #+#    #+#             */
+/*   Updated: 2017/01/25 16:13:57 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "libft/libft.h"
+size_t	ft_list_size(t_list *begin_list)
+{
+	t_list	*list;
+	size_t	i;
 
-# define BUFF_SIZE 32
-
-int		get_next_line(int fd, char **line);
-#endif
+	i = 0;
+	list = begin_list;
+	while (list != NULL)
+	{
+		i++;
+		list = list->next;
+	}
+	return (i);
+}

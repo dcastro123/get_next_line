@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 22:35:16 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/02/16 23:21:22 by dcastro-         ###   ########.fr       */
+/*   Created: 2017/01/05 11:45:40 by dcastro-          #+#    #+#             */
+/*   Updated: 2017/01/22 15:23:34 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "libft/libft.h"
+int		ft_strcmp(const char *s1, const char *s2)
+{
+	size_t				i;
+	unsigned const char	*s1_temp;
+	unsigned const char	*s2_temp;
 
-# define BUFF_SIZE 32
-
-int		get_next_line(int fd, char **line);
-#endif
+	s1_temp = (unsigned const char*)s1;
+	s2_temp = (unsigned const char*)s2;
+	i = 0;
+	while (s1_temp[i] && s2_temp[i])
+	{
+		if (s1_temp[i] != s2_temp[i])
+			return (s1_temp[i] - s2_temp[i]);
+		i++;
+	}
+	return (s1_temp[i] - s2_temp[i]);
+}
