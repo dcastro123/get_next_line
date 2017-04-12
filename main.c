@@ -6,7 +6,7 @@
 /*   By: dcastro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 19:09:51 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/04/10 22:32:33 by dcastro-         ###   ########.fr       */
+/*   Updated: 2017/04/11 18:54:35 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int		main(int argc, char **argv)
 	int		fd;
 	char	*line;
 
-	if (argc < 2)
-		return (0);
+	argc = 1000;
 	fd = open(argv[1], O_RDONLY);
+	fd = 0;
 	while (get_next_line(fd, &line) == 1)
 	{
 		ft_putendl(line);
