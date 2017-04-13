@@ -6,26 +6,28 @@
 /*   By: dcastro- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 16:42:41 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/04/11 16:42:00 by dcastro-         ###   ########.fr       */
+/*   Updated: 2017/04/12 18:35:09 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 int		send_help(char **buf_keep, char **line)
 {
 	char	*temp;
 	size_t	len;
 
-	len = ft_wdlen(*buf_keep, '\n');
 	if (ft_strlen(*buf_keep))
 	{
+		len = ft_wdlen(*buf_keep, '\n');
+
 		if (ft_strchr(*buf_keep, '\n'))
 		{
 			*line = ft_strsub(*buf_keep, 0, len);
-//			temp = ft_strdup(*buf_keep + len + 1);
-			temp = ft_strsub(*buf_keep, (len + 1),
-					(ft_strlen(*buf_keep) - (len + 1)));
+			temp = ft_strdup(*buf_keep + len + 1);
+//			temp = ft_strsub(*buf_keep, (len + 1),
+//					(ft_strlen(*buf_keep) - (len + 1)));
 			free(*buf_keep);
 			*buf_keep = temp;
 			return (1);
@@ -58,6 +60,8 @@ int		get_next_line(const int fd, char **line)
 		if (ft_strchr(buff, '\n'))
 			break ;
 	}
+	if (buf_keep == NULL)
+		return (0);
 	if (send_help(&buf_keep, line))
 		return (1);
 	return (0);

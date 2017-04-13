@@ -17,17 +17,31 @@
 
 int		main(int argc, char **argv)
 {
-	int		fd;
 	char	*line;
+	int		fd;
+	int		res;
+	int		num;
 
-	argc = 1000;
+	res = 0;
+	num = 0;
+	line = NULL;
+	argc = 0;
 	fd = open(argv[1], O_RDONLY);
-	fd = 0;
-	while (get_next_line(fd, &line) == 1)
+	
+	if (fd > 0)
+		while ((res = get_next_line(fd, &line)) > 0)
+		{
+			printf("[Ret: %d, # of Line: %d, FD: %d] %s\n", res, ++num, fd, line);
+			ft_strdel(&line);
+		}
+	ft_strdel(&line);
+	printf("[Ret: %d, # of Line: %d, FD: %d] %s\n", res, ++num, fd, line);
+	if ((fd > 0 && (close(fd) == -1 || res != 0)) || fd < 0)
 	{
-		ft_putendl(line);
-		free(line);
+		if (!line)
+			write(1, "error\n", 6);
+		return (1);
 	}
-	close(fd);
+	printf ("/* Ret == 1 ; read line\n   Ret == 0 ; end of line(finish) */\n");
 	return (0);
 }
